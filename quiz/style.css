@@ -1,0 +1,83 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding: 10px;
+    background-color: #ede3c6; /* 背景色を指定 */
+}
+h1 {
+    font-family: "Shadows Into Light Two", cursive;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 2em; /* フォントサイズを調整 */
+    color: #333; /* フォントの色を指定 */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* テキストに影を付けて立体感を出す */
+    margin-bottom: 0; /* 下の余白をゼロにする */
+}
+h2 {
+    margin-top: 0; /* 上の余白をゼロにする */
+    margin-bottom: 0; /* 下の余白をゼロにする */
+}
+.quiz-container {
+    display: none;
+}
+#result {
+    display: none; /* 初期状態で非表示 */
+    margin-top: 20px;
+}
+button {
+    margin: 5px;
+    padding: 30px 40px;
+    border: none;
+    border-radius: 8px; /* ボタンの角を丸くする */
+    cursor: pointer; /* カーソルをポインタにする */
+    font-size: 1.2em; /* フォントサイズを少し大きくする */
+    transition: background-color 0.3s, transform 0.2s; /* ホバー時のアニメーション */
+}
+button:hover {
+    background-color: #007bff; /* ホバー時の背景色 */
+    color: white; /* ホバー時の文字色 */
+    transform: scale(1.05); /* ホバー時にボタンを少し拡大 */
+}
+button:active {
+    transform: scale(0.95); /* クリック時にボタンを少し縮小 */
+}
+#question {
+    font-size: 5em;
+    font-weight: bold;
+    color: #333;
+    margin-top: 0; /* 上の余白をゼロにする */
+    margin-bottom: 0; /* 下の余白をゼロにする */
+}
+#choices button {
+    font-size: 5.0em;
+    padding: 10px 20px;
+}
+#feedback {
+    font-size: 2em;
+    font-weight: bold;
+    color: green;
+    margin-top: 20px;
+    display: none;
+}
+/* 画像のスタイル */
+#quiz-image {
+    max-width: 100%; /* 画像の最大幅をブラウザの横幅に制限 */
+    margin-top: 0; /* 上の余白をゼロにする */
+    margin-bottom: 0; /* 下の余白をゼロにする */
+}
+.result-table {
+    margin: 0 auto;
+    border-collapse: collapse;
+    width: 80%;
+}
+.result-table th, .result-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+.result-table th {
+    background-color: #f4f4f4;
+}
+.result-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
