@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>アラビア数字クイズ</title>
+    
+    <!-- ファビコンの設定 -->
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+
+    <!-- フォントのリンク -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sankofa+Display&family=Shadows+Into+Light+Two&display=swap" rel="stylesheet">
+    
+    <!-- CSSのリンク -->
+    <link rel="stylesheet" href="style.css">
+    <!-- JavaScriptのリンク -->
+    <script src="script.js"></script>
+
+</head>
+<body>
+
+<h1><a href="index.html" style="text-decoration: none; color: inherit;">Arabic Numerals Quiz</a></h1>
+
+<!-- 任意の画像をページ内に表示 -->
+<img id="quiz-image" src="img/title.png" alt="Quiz Image">
+
+
+<div id="mode-selection">
+    <h2>モードを選んでください</h2>
+    <button onclick="startQuiz('beginner')">初級編</button>
+    <button onclick="startQuiz('intermediate')">中級編</button>
+    <button onclick="startQuiz('advanced')">上級編</button>
+    <button onclick="startQuiz('expert')">玄人編</button>
+</div>
+
+<div id="quiz-container" class="quiz-container">
+    <h2 id="question"></h2>
+    <p id="feedback"></p>
+    <div id="choices"></div>
+    <p id="timer" style="font-weight: bold; color: red;"></p>
+    
+</div>
+
+<div id="result" class="result">
+    <h2>正答率: <span id="accuracy"></span>%</h2>
+    <table class="result-table">
+        <thead>
+            <tr>
+                <th>問題</th>
+                <th>選択肢</th>
+                <th>正誤</th>
+            </tr>
+        </thead>
+        <tbody id="result-table-body">
+            <!-- 正誤一覧がここに動的に追加されます -->
+        </tbody>
+    </table>
+    <button onclick="restartQuiz()">もう一度プレイする</button>
+</div>
+
+</body>
+</html>
