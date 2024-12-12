@@ -4,26 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>アラビア数字クイズ</title>
-    
-    <!-- ファビコンの設定 -->
-    <link rel="icon" href="img/favicon.png" type="image/x-icon">
 
-    <!-- フォントのリンク -->
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Sankofa+Display&family=Shadows+Into+Light+Two&display=swap" rel="stylesheet">
     
-    <!-- CSSのリンク -->
     <link rel="stylesheet" href="style.css">
-    <!-- JavaScriptのリンク -->
-    <script src="script.js"></script>
 
 </head>
 <body>
 
 <h1><a href="index.html" style="text-decoration: none; color: inherit;">Arabic Numerals Quiz</a></h1>
 
-<!-- 任意の画像をページ内に表示 -->
 <img id="quiz-image" src="img/title.png" alt="Quiz Image">
 
 
@@ -54,11 +48,20 @@
             </tr>
         </thead>
         <tbody id="result-table-body">
-            <!-- 正誤一覧がここに動的に追加されます -->
         </tbody>
     </table>
     <button onclick="restartQuiz()">もう一度プレイする</button>
 </div>
 
+<img id="divine_line" src="img/divine_line.png" alt="divine_line">
+
+<div id="converter">
+    <h3>アラビア数字 → アラビア語数字</h3>
+    <input type="text" id="arabic-numerals" placeholder="アラビア数字を入力" maxlength="10">
+    <button onclick="convertToArabic()">変換</button>
+    <br>
+    <p id="converted-result" ></p>
+</div>
+    <script src="script.js"></script>
 </body>
 </html>
