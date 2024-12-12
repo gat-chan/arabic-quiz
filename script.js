@@ -1,4 +1,4 @@
-    const arabicNumbers = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩']; // アラビア語の数字
+    const arabicNumbers = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩']; 
     let currentQuestion = 0;
     let correctAnswers = 0;
     let selectedMode;
@@ -18,7 +18,7 @@
     function startQuiz(mode) {
         if (mode === 'advanced' || mode === 'expert') {
             alert("このモードはまだ未実装です。");
-            return; // 処理を終了
+            return;
         }
 
         selectedMode = mode;
@@ -28,8 +28,9 @@
         userAnswers = [];
         document.getElementById('mode-selection').style.display = 'none';
         document.getElementById('quiz-container').style.display = 'block';
-        document.getElementById('result').style.display = 'none'; // 結果画面を非表示
+        document.getElementById('result').style.display = 'none';
         document.getElementById('quiz-image').style.display = 'none';
+        document.getElementById('converter').style.display = 'none';
         generateQuizData();
         showQuestion();
     }
@@ -39,7 +40,7 @@
         for (let i = 0; i < totalQuestions; i++) {
             let questionNumber = generateArabicNumber(modes[selectedMode].digits);
             quizData.push({ question: questionNumber });
-            questions.push(questionNumber); // 問題を記録
+            questions.push(questionNumber);
         }
     }
 
@@ -55,25 +56,24 @@
     const currentQuiz = quizData[currentQuestion];
     const correctAnswer = parseInt(currentQuiz.question.replace(/[٠-٩]/g, d => arabicNumbers.indexOf(d)));
     const questionDiv = document.getElementById('question');
-    questionDiv.innerHTML = ''; // 既存の内容をクリア
+    questionDiv.innerHTML = ''; 
 
-    // 「問題:」を小さく表示し、その後に改行して問題文を表示
     const problemLabel = document.createElement('span');
     problemLabel.innerText = '問題';
-    problemLabel.style.fontSize = '16px'; // 「問題:」のサイズを小さく
+    problemLabel.style.fontSize = '16px'; 
     questionDiv.appendChild(problemLabel);
     
-    const br = document.createElement('br'); // 改行
+    const br = document.createElement('br'); 
     questionDiv.appendChild(br);
 
     const problemText = document.createElement('span');
     problemText.innerText = currentQuiz.question;
-    problemText.style.fontSize = '140px'; // 問題のサイズは普通に設定
+    problemText.style.fontSize = '140px'; 
     questionDiv.appendChild(problemText);
 
     const choicesDiv = document.getElementById('choices');
     choicesDiv.innerHTML = '';
-    document.getElementById('feedback').style.display = 'none'; // 正誤表示を非表示
+    document.getElementById('feedback').style.display = 'none'; 
 
     let choices = generateChoices(correctAnswer, modes[selectedMode].choices);
 
@@ -100,7 +100,7 @@
                     choices.push(randomChoice);
                 }
             }
-            return choices.sort(() => Math.random() - 0.5); // シャッフル
+            return choices.sort(() => Math.random() - 0.5); 
         }
     }
 
@@ -108,7 +108,7 @@
         clearInterval(timer);
 
         const feedback = document.getElementById('feedback');
-        userAnswers.push(selectedAnswer); // ユーザーの回答を記録
+        userAnswers.push(selectedAnswer); 
         if (selectedAnswer === correctAnswer) {
             correctAnswers++;
             feedback.innerText = "正解！";
@@ -118,9 +118,8 @@
             feedback.style.color = 'red';
         }
 
-        feedback.style.display = 'block'; // 正誤表示を表示
+        feedback.style.display = 'block'; 
 
-        // 1秒後に次の問題に進む
         setTimeout(() => {
             currentQuestion++;
             if (currentQuestion < totalQuestions) {
@@ -153,7 +152,7 @@
         let correctCount = correctAnswers;
         const resultTableBody = document.getElementById('result-table-body');
 
-        resultTableBody.innerHTML = ''; // 既存の内容をクリア
+        resultTableBody.innerHTML = ''; 
 
         for (let i = 0; i < totalQuestions; i++) {
             const row = document.createElement('tr');
@@ -183,4 +182,49 @@
         document.getElementById('result').style.display = 'none';
         document.getElementById('mode-selection').style.display = 'block';
         document.getElementById('quiz-image').style.display = 'block';
+        document.getElementById('converter').style.display = 'block';
     }
+
+document.getElementById('arabic-numerals').addEventListener('input', function(event) {
+
+    let inputValue = event.target.value;
+
+    inputValue = inputValue.replace(/[\uFF10-\uFF19]/g, function(match) {
+        return String.fromCharCode(match.charCodeAt(0) - 0xFEE0);
+    });
+
+    event.target.value = inputValue;
+});
+
+const arabicDigitsMap = {
+    '0': '٠',
+    '1': '١',
+    '2': '٢',
+    '3': '٣',
+    '4': '٤',
+    '5': '٥',
+    '6': '٦',
+    '7': '٧',
+    '8': '٨',
+    '9': '٩'
+};
+
+function convertToArabic() {
+    const input = document.getElementById('arabic-numerals').value.trim(); 
+    if (input === '') {
+        alert('入力が空です。アラビア数字を入力してください。');
+        return; 
+    }
+
+    let result = '';
+
+    for (const char of input) {
+        if (arabicDigitsMap[char] !== undefined) {
+            result += arabicDigitsMap[char];
+        } else {
+            result += char; 
+        }
+    }
+
+    document.getElementById('converted-result').innerText = result;
+}
